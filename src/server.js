@@ -1,12 +1,13 @@
 import express from "express";
+import morgan from "morgan";
 
 const PORT = 4000;
 const app = express(); // express application 생성
-
-const logger = (req, res, next) => {
-    console.log(`${req.method} ${req.url}`); // GET /
-    next();
-}
+const logger = morgan("combined");
+// const logger = (req, res, next) => {
+//     console.log(`${req.method} ${req.url}`); // GET /
+//     next();
+// }
 const privateMiddleware = (req, res, next)=> {
     const url = req.url; 
     if(url === "/protected"){
